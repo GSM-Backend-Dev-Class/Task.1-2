@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /*
+    TODO: 해당 클래스를 수정하여주세요!
+     */
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

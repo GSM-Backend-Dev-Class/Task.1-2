@@ -26,7 +26,7 @@ public class Task1_2Information {
         log.info("\033[32m과제: 1-2\033[0m");
         log.info("\033[32m요약: JWT 인증/인가 구현\033[0m");
         log.info("\033[33m과제 수행기간: 2025/03/02~2025/03/07\033[0m");
-        log.info("\033[35mNotion을 참고하여 과제를 수행해주세요: \033[0m");
+        log.info("\033[35mNotion을 참고하여 과제를 수행해주세요: https://amondbabaro.notion.site/1-2-2025-03-02-2025-03-07-1a78f98f331080eda510eec8fae9e089?pvs=74\033[0m");
         log.info("\033[31m과제를 수행하면서 궁금한 점이나 문제가 발생하면 언제든지 질문해주세요\033[0m");
         log.info("\033[31m과제를 완료하면 Discord 채널에 과제 완료 보고 부탁드립니다\033[0m");
         log.info("\033[36m언제나 화이팅입니다!\033[0m");
