@@ -2,8 +2,8 @@ spring:
   application:
     name: task.1-2
   datasource:
-    url: jdbc:${DB_TYPE:mysql}://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:study}
-    username: ${DB_USER:root}
+    url: jdbc:${DB_TYPE}://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
@@ -14,3 +14,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
+
+jwt:
+  header: Authorization
+  secret: df6cf94a6854702f84465dd4fe1a84957152553ae5935f0dd4465d69fdf81807
+  token-validity-in-seconds: 86400
