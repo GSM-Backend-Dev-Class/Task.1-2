@@ -47,4 +47,9 @@ public class TestController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body("Welcome to your profile, " + username + "!");
     }
+
+    @GetMapping
+    public String index() {
+        return "index";
+    }
 }
