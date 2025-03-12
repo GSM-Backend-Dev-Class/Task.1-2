@@ -3,8 +3,8 @@ spring:
     name: task.1-2
   datasource:
     url: jdbc:mysql://localhost:3306/task-12?useUnicode=true&characterEncoding=UTF-8
-    username: root #${DB_USER:root}
-    password: 123456 #${DB_PASSWORD}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -15,4 +15,4 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
 jwt:
-  secret: eR4$Lk9!ZpQv1@x8Df#Tj7Bn%2KpMwQ5RtUv!aXn
+  secret: ${DB_SecretKey}

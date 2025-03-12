@@ -21,8 +21,25 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(String username, String password){
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false, unique = true)
+    private String phonenumber;
+
+    @Column(nullable = false, unique = true)
+    private String address;
+
+    @Column(nullable = false)
+    private boolean isadult;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private MemberRole role;
+
+    public User(String username, String password, MemberRole role){
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 }
