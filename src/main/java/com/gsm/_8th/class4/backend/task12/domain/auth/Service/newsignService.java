@@ -25,6 +25,7 @@ public class newsignService {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("이미 존재하는 사용자입니다.");
         }
+        String encoredPassword = passwordEncoder.encode(request.getPassword());
         NewSign newUser = NewSign.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
