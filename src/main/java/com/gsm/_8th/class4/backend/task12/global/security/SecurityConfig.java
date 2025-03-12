@@ -38,9 +38,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/api/v1/signIn").permitAll();
-                    authorize.requestMatchers("/api/v1/signUp").permitAll();
-                    authorize.requestMatchers("/api/admin/**").hasRole("ADMIN");
+                    authorize.requestMatchers("/auth/signIn").permitAll();
+                    authorize.requestMatchers("/auth/signUp").permitAll();
+                    authorize.requestMatchers("/admin/**").hasRole("ADMIN");
                     authorize.anyRequest().authenticated();
                 })
 
