@@ -3,37 +3,36 @@ package com.gsm._8th.class4.backend.task12.domain.auth.controller;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthResponse;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.RefreshRequest;
-import com.gsm._8th.class4.backend.task12.domain.auth.entity.MemberRole;
-import com.gsm._8th.class4.backend.task12.domain.auth.entity.User;
-import com.gsm._8th.class4.backend.task12.domain.auth.repository.UserRespository;
-import com.gsm._8th.class4.backend.task12.domain.auth.service.AuthService;
-import com.gsm._8th.class4.backend.task12.domain.auth.token.TokenProvider;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.refresh.Refresh;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.signin.SigninService;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.signup.SignupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 
-    private final AuthService authService;
+    private final SigninService signin;
+
+    private final SignupService signup;
+
+    private final Refresh refresh;
 
     @PostMapping("/signup")
-    private ResponseEntity<String> signup(@RequestBody AuthRequest authRequest){
-        return authService.signup(authRequest);
+    public ResponseEntity<String> signup(@RequestBody AuthRequest authRequest){
+        return signup.signup(authRequest);
     }
 
     @PostMapping("/signin")
-    private ResponseEntity<AuthResponse> singin(@RequestBody AuthRequest authRequest){
-        return authService.signin(authRequest);
+    public ResponseEntity<AuthResponse> signin(@RequestBody AuthRequest authRequest){
+        return signin.signin(authRequest);
     }
 
     @PatchMapping("/refresh")
-    private ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest){
-        return authService.refresh(refreshRequest);
+    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest){
+        return refresh.refresh(refreshRequest);
     }
 }
