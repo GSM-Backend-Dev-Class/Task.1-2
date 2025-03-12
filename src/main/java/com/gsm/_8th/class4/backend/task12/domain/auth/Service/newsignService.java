@@ -37,28 +37,41 @@ public class newsignService {
     // 로그인
     public TokenResponse login(String username, String rawPassword) {
         Optional<NewSign> userOptional = userRepository.findByUsername(username);
+
         if (userOptional.isPresent()) {
             NewSign user = userOptional.get();
             if (passwordEncoder.matches(rawPassword, user.getPassword())) {
                 String accessToken = jwtTokenService.createAccessToken(username);
                 String refreshToken = jwtTokenService.createRefreshToken(username);
                 return new TokenResponse(accessToken, refreshToken);
+            } else {
+                throw new IllegalArgumentException("비밀번호 또는 사용자 이름이 틀립니다!");
             }
         }
-        return null; // 로그인 실패
+
+        throw new IllegalArgumentException("해당 사용자 이름을 찾을 수 없습니다!");
     }
+
     // 리프레시 토큰을 통한 JWT 재발급
     public TokenResponse refreshToken(String refreshToken) {
         String username = jwtTokenService.getUsernameFromToken(refreshToken);
-
-        if (username != null && jwtTokenService.validateRefreshToken(username, refreshToken)) {
-            jwtTokenService.revokeRefreshToken(username); // 기존 리프레시 토큰 폐기 Refresh Token Rotation 적용
-
-            String newAccessToken = jwtTokenService.createAccessToken(username);
-            String newRefreshToken = jwtTokenService.createRefreshToken(username);
-
-            return new TokenResponse(newAccessToken, newRefreshToken);
+        if (username == null || !jwtTokenService.validateRefreshToken(username, refreshToken)) {
+            throw new IllegalArgumentException("유효하지 않은 리프레시 토큰입니다.");
         }
-        return null;
+        jwtTokenService.revokeRefreshToken(username);
+        String newAccessToken = jwtTokenService.createAccessToken(username);
+        String newRefreshToken = jwtTokenService.createRefreshToken(username);
+        return new TokenResponse(newAccessToken, newRefreshToken);
+    }
+
+    // 사용자 삭제 (서비스를 통해 처리)
+    @Transactional
+    public void deleteUser(String username) {
+        Optional<NewSign> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isPresent()) {
+            userRepository.delete(userOptional.get());
+        } else {
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다.");
+        }
     }
 }
