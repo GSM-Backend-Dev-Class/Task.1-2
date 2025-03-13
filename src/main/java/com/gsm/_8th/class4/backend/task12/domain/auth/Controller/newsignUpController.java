@@ -1,8 +1,8 @@
 package com.gsm._8th.class4.backend.task12.domain.auth.Controller;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.Service.DeleteUserService;
-import com.gsm._8th.class4.backend.task12.domain.auth.Service.LoginService;
-import com.gsm._8th.class4.backend.task12.domain.auth.Service.NewSignService;
+import com.gsm._8th.class4.backend.task12.domain.auth.Service.signinService;
+import com.gsm._8th.class4.backend.task12.domain.auth.Service.SignUpService;
 import com.gsm._8th.class4.backend.task12.domain.auth.Service.RefreshTokenService;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.UserLoginRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.UserSignupRequest;
@@ -17,11 +17,11 @@ import java.net.URISyntaxException;
 @RestController
 @RequestMapping("/api/v1/auth") // ✅ API 명세서에 맞춰 변경
 @RequiredArgsConstructor
-public class newsignController {  // ✅ 클래스명 변경
+public class newsignUpController {  // ✅ 클래스명 변경
 
-    private final NewSignService authService;
+    private final SignUpService authService;
     private final DeleteUserService deleteUserService;
-    private final LoginService loginService;
+    private final signinService signinService;
     private final RefreshTokenService refreshTokenService;
 
     // 회원가입
@@ -42,7 +42,7 @@ public class newsignController {  // ✅ 클래스명 변경
     // 로그인
     @PostMapping("/signin") // ✅ API 경로 수정
     public ResponseEntity<TokenResponse> login(@RequestBody UserLoginRequest request) {
-        return ResponseEntity.ok(loginService.login(request.getUsername(), request.getPassword()));
+        return ResponseEntity.ok(signinService.login(request.getUsername(), request.getPassword()));
     }
 
     // 토큰 갱신

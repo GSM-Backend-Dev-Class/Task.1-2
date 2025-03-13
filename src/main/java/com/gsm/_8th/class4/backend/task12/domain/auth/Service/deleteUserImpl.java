@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gsm._8th.class4.backend.task12.domain.auth.Repository.UserRepository;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.Optional;
 
@@ -18,10 +19,12 @@ public class deleteUserImpl implements DeleteUserService {
 
     @Override
     @Transactional
+
     public void deleteUser(String username) {
-        if (!userRepository.existsByUsername(username)) {
-            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
-        }
-        userRepository.deleteByUsername(username);
-    }
+        userRepository.findByUsername(username)
+                .ifPresentOrElse(
+                        userRepository::delete,
+                        () -> { throw new IllegalArgumentException("존재하지 않는 사용자입니다."); }
+                );
+}
 }

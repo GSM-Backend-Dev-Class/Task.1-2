@@ -3,17 +3,14 @@ package com.gsm._8th.class4.backend.task12.domain.auth.Service;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.UserSignupRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.Entity.NewSign;
 import com.gsm._8th.class4.backend.task12.domain.auth.Repository.UserRepository;
-import com.gsm._8th.class4.backend.task12.global.security.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
-public class NewsignServiceImpl implements NewSignService {
+public class signUpServiceImpl implements SignUpService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 

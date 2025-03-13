@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LoginServiceImpl implements LoginService {
+public class signinServiceImpl implements signinService {
     private final UserRepository userRepository;
     private final JwtTokenService jwtTokenService;
     private final PasswordEncoder passwordEncoder;
@@ -18,12 +18,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public TokenResponse login(String username, String rawPassword) {
         NewSign user = userRepository.findByUsername(username)
+                .filter(u -> passwordEncoder.matches(rawPassword, u.getPassword()))
                 .orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 틀렸습니다."));
-
-        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
-            throw new IllegalArgumentException("아이디 또는 비밀번호가 틀렸습니다.");
-        }
-
         return new TokenResponse(
                 jwtTokenService.createAccessToken(username),
                 jwtTokenService.createRefreshToken(username)
