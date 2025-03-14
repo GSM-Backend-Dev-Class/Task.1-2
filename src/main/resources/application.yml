@@ -2,7 +2,7 @@ spring:
   application:
     name: task.1-2
   datasource:
-    url: jdbc:${DB_TYPE:mysql}://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:study}
+    url: jdbc:mysql://localhost:3306/task-12?useUnicode=true&characterEncoding=UTF-8
     username: ${DB_USER:root}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -14,3 +14,5 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
+jwt:
+  secret: ${DB_SecretKey}
