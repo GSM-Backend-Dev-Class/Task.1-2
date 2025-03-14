@@ -1,18 +1,19 @@
-package com.gsm._8th.class4.backend.task12.domain.auth.service.refresh;
+package com.gsm._8th.class4.backend.task12.domain.auth.service.refreshservice.impl;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthResponse;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.RefreshRequest;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.refreshservice.RefreshService;
 import com.gsm._8th.class4.backend.task12.domain.auth.token.TokenProvider;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
-public class RefreshImpl implements Refresh{
+@RequiredArgsConstructor
+public class RefreshServiceImpl implements RefreshService {
 
-    @Autowired
-    private TokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
     public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refRequest){
         String refreshToken = refRequest.getRefreshToken();

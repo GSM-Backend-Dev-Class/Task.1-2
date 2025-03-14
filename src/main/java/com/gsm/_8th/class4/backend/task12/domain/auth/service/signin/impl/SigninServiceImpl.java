@@ -1,11 +1,12 @@
-package com.gsm._8th.class4.backend.task12.domain.auth.service.signin;
+package com.gsm._8th.class4.backend.task12.domain.auth.service.signin.impl;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthResponse;
 import com.gsm._8th.class4.backend.task12.domain.auth.entity.User;
 import com.gsm._8th.class4.backend.task12.domain.auth.repository.UserRespository;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.signin.SigninService;
 import com.gsm._8th.class4.backend.task12.domain.auth.token.TokenProvider;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,16 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SigninServiceImpl implements SigninService {
 
-    @Autowired
-    private UserRespository userRespository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRespository userRespository;
 
-    @Autowired
-    private TokenProvider tokenProvider;
+    private final PasswordEncoder passwordEncoder;
+
+    private final TokenProvider tokenProvider;
 
     @Override
     public ResponseEntity<AuthResponse> signin(AuthRequest authRequest){

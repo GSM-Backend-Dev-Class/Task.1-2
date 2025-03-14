@@ -1,10 +1,11 @@
-package com.gsm._8th.class4.backend.task12.domain.auth.service.signup;
+package com.gsm._8th.class4.backend.task12.domain.auth.service.signup.impl;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.entity.MemberRole;
 import com.gsm._8th.class4.backend.task12.domain.auth.entity.User;
 import com.gsm._8th.class4.backend.task12.domain.auth.repository.UserRespository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.signup.SignupService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SignupServiceImpl implements SignupService {
 
-    @Autowired
-    private UserRespository userRespository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRespository userRespository;
+
+    private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<String> signup(AuthRequest authRequest){
         Optional<User> existingUser = userRespository.findByUsername(authRequest.getUsername());

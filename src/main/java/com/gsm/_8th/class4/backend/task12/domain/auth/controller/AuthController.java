@@ -3,7 +3,7 @@ package com.gsm._8th.class4.backend.task12.domain.auth.controller;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthResponse;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.RefreshRequest;
-import com.gsm._8th.class4.backend.task12.domain.auth.service.refresh.Refresh;
+import com.gsm._8th.class4.backend.task12.domain.auth.service.refreshservice.RefreshService;
 import com.gsm._8th.class4.backend.task12.domain.auth.service.signin.SigninService;
 import com.gsm._8th.class4.backend.task12.domain.auth.service.signup.SignupService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class AuthController {
 
     private final SignupService signup;
 
-    private final Refresh refresh;
+    private final RefreshService refresh;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody AuthRequest authRequest){
