@@ -1,4 +1,4 @@
-package com.gsm._8th.class4.backend.task12.domain.auth.service.signup.impl;
+package com.gsm._8th.class4.backend.task12.domain.auth.service.impl;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthRequest;
 import com.gsm._8th.class4.backend.task12.domain.auth.entity.MemberRole;

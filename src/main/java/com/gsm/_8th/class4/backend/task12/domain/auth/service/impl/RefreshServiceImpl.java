@@ -1,4 +1,4 @@
-package com.gsm._8th.class4.backend.task12.domain.auth.service.refreshservice.impl;
+package com.gsm._8th.class4.backend.task12.domain.auth.service.impl;
 
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.AuthResponse;
 import com.gsm._8th.class4.backend.task12.domain.auth.dto.RefreshRequest;
